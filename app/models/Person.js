@@ -30,6 +30,10 @@ const Person = sequelize.define('Person',{
     DNI:{
         type: DataTypes.STRING,
         allowNull: false
+    },
+    email: {
+        type: DataTypes.STRING,
+        allowNull: true
     }
 })
 
