@@ -31,6 +31,6 @@ const Person = sequelize.define('Person',{
         type: DataTypes.STRING,
         allowNull: false
     }
-
-
 })
+
+module.exports = Person;
