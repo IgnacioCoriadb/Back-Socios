@@ -1,27 +1,9 @@
-const { Client } = require('pg');
+const { Sequelize} = require('sequelize');
 
-// Configuración de la conexión a la base de datos
-const client = new Client({
-  user: process.env.USER,
-  host: process.env.HOST,
-  database:  process.env.DATABASE,
-  password: process.env.PASSWORD,
-  port:  process.env.PORT, // Puerto predeterminado de PostgreSQL
+const sequelize = new Sequelize( process.env.DATABASE, process.env.USER,  process.env.PASSWORD, {
+  host:  process.env.HOST,
+  dialect: process.env.DIALECT
 });
 
-// Función para conectar a la base de datos
-async function connectDb() {
-  try {
-    await client.connect();
-    console.log('Conexión exitosa a PostgreSQL');
-  } catch (err) {
-    console.error('Error de conexión a PostgreSQL', err);
-  }
-}
 
-
-// Exportar el cliente y la función de conexión
-module.exports = {
-  client,
-  connectDb,
-};
+module.exports = sequelize;

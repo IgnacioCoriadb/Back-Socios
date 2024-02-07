@@ -1,14 +1,23 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const {client, connectDb} = require('./config/postgreSql');
-
+const bodyParser = require('body-parser');
+const sequelize = require('./config/postgreSql'); 
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
-connectDb();
+app.use(bodyParser.json());
+
+
+sequelize.sync()
+  .then(() => {
+    console.log('Database synced');
+  })
+  .catch(err => {
+    console.error('Error syncing database:', err);
+  });
 
 app.listen(PORT, ()=>{
     console.log('APP Running on port ' + PORT);
