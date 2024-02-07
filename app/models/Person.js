@@ -3,7 +3,7 @@ const sequelize = require('../../config/postgreSql');
 
 
 const Person = sequelize.define('Person',{
-    userName:{
+    name:{
         type: DataTypes.STRING,
         allowNull: false
     },
