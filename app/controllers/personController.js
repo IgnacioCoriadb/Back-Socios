@@ -55,13 +55,13 @@ async function getPersonById(req,res){
   async function updatePerson(req,res){
     try{
         const id = req.params.id;
-        const {userName,lastName,dateOfBirth,address,phone,DNI} = req.body;
+        const {name,lastName,dateOfBirth,address,phone,DNI} = req.body;
         const person = await Person.findByPk(id);
 
         //verificar si existe la persona
         if(person){
             await person.update({
-                userName: userName || person.userName,
+                userName: name || person.name,
                 lastName: lastName || person.lastName,
                 dateOfBirth: dateOfBirth || person.dateOfBirth,
                 address: address || person.address,

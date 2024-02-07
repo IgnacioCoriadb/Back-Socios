@@ -1,6 +1,7 @@
 const { DataTypes,UUIDV4  } = require('sequelize');
 const sequelize = require('../../config/postgreSql');
 const Person = require('./Person');
+const Sport = require('./Sports');
 
 const Membership = sequelize.define('Membership',{
     id: {
@@ -15,11 +16,6 @@ const Membership = sequelize.define('Membership',{
     },//ultimo pago 
     lastPayment:{
         type: DataTypes.DATE,
-        allowNull: true
-    },
-    //si realiza algun deporte en la institución
-    sport:{
-        type: DataTypes.STRING,
         allowNull: true
     },
 });
