@@ -4,13 +4,14 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const sequelize = require('./config/postgreSql'); 
 const Person = require('./app/models/Person');
+const routes = require("./app/routes/index");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
-
+app.use('/', routes);
 
 sequelize.sync()
   .then(() => {
