@@ -9,7 +9,7 @@ async function getAllSport(req,res){
         });
         res.json(sports);
     }catch(err){
-        console.error('Error eliminando persona:', error);
+        console.error('Error obteniendo  las personas:', error);
         res.status(500).json({ error: 'Error interno del servidor' }); 
     }
 }
@@ -57,7 +57,7 @@ async function postSport(req,res){
         });
     
         res.json(newSport);
-    }catch(err){
+    }catch(error){
         console.error('Error eliminando persona:', error);
         res.status(500).json({ error: 'Error interno del servidor' }); 
     }

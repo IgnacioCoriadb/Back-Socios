@@ -1,7 +1,6 @@
 const { DataTypes,UUIDV4  } = require('sequelize');
 const sequelize = require('../../config/postgreSql');
 const Person = require('./Person');
-const Sport = require('./Sports');
 
 const Membership = sequelize.define('Membership',{
     id: {
@@ -12,7 +11,7 @@ const Membership = sequelize.define('Membership',{
     //Si esta al día con la cuota será true sino false
     status:{
         type: DataTypes.BOOLEAN,
-        allowNull: true
+        allowNull: false
     },//ultimo pago 
     lastPayment:{
         type: DataTypes.DATE,
@@ -20,6 +19,9 @@ const Membership = sequelize.define('Membership',{
     },
 });
 
-Membership.belongsTo(Person);
-
+Membership.belongsTo(Person, {
+    foreignKey: 'personId',
+    allowNull: false
+  });
+  
 module.exports = Membership;

@@ -27,7 +27,7 @@ async function getPersonById(req,res){
 
   async function postPerson(req,res){
     try{
-        const {userName,lastName,dateOfBirth,address,phone,DNI} = req.body;
+        const {name,lastName,dateOfBirth,address,phone,DNI} = req.body;
 
         //calcular edad con fecha de nacimiento
         const dateOfBirthFormat = new Date(dateOfBirth);
@@ -36,7 +36,7 @@ async function getPersonById(req,res){
         const age =Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
 
         const newPerson = await Person.create({
-            userName,
+            name,
             lastName,
             dateOfBirth,
             age,
@@ -61,7 +61,7 @@ async function getPersonById(req,res){
         //verificar si existe la persona
         if(person){
             await person.update({
-                userName: name || person.name,
+                name: name || person.name,
                 lastName: lastName || person.lastName,
                 dateOfBirth: dateOfBirth || person.dateOfBirth,
                 address: address || person.address,
