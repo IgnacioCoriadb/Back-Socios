@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const sequelize = require('./config/postgreSql'); 
 const Person = require('./app/models/Person');
 const Membership = require('./app/models/Membership');
-
+const PersonSport = require('./app/models/PersonSport');
 const routes = require("./app/routes/index");
 
 const app = express();
