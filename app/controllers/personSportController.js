@@ -1,10 +1,21 @@
 const PersonSport = require('../models/PersonSport');
-
-
+const Person = require("../models/Person");
+const Sport = require("../models/Sports");
 
 async function getAllPersonSport(req,res){
     try{
-        const personSport =await PersonSport.findAll();
+        const personSport =await PersonSport.findAll({
+            include: [
+                {
+                    model:Person,
+                    attributes:['id','name','lastName','age','DNI']
+                },
+                {
+                    model:Sport,
+                    attributes:['name','id']
+                }
+            ]
+        });
         res.json(personSport);
     }catch(error){
         console.error('Error obteniendo  los deportes en los que participan las personas:', error);
@@ -35,7 +46,13 @@ async function updatePersonSport(req,res){
 async function getPersonSportById(req,res){
     try{
         const {id} = req.params;
-        const personSport = await PersonSport.findByPk(id);
+        const personSport = await PersonSport.findByPk(id,{
+            include: [
+                {
+                    model:Person
+                }
+            ]
+        });
 
         if(personSport){
             res.json(personSport);
@@ -54,8 +71,8 @@ async function postPersonSport(req,res){
 
         const newPersonSport =await PersonSport.create({
             status,
-            PersonId: personId,
-            SportId: sportId
+            personId,
+            sportId
         });
     
         res.json(newPersonSport);

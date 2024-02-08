@@ -15,7 +15,7 @@ const PersonSport = sequelize.define('PersonSport',{
       }
 });
 
-Person.belongsToMany(Sport, { through: 'PersonSport' });
-Sport.belongsToMany(Person, { through: 'PersonSport' });
+PersonSport.belongsTo(Person, { foreignKey: 'personId' }); 
+PersonSport.belongsTo(Sport, { foreignKey: 'sportId' }); 
 
 module.exports = PersonSport;
