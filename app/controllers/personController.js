@@ -27,7 +27,7 @@ async function getPersonById(req,res){
 
   async function postPerson(req,res){
     try{
-        const {name,lastName,dateOfBirth,address,phone,DNI} = req.body;
+        const {name,lastName,dateOfBirth,address,phone,DNI,email} = req.body;
 
         //calcular edad con fecha de nacimiento
         const dateOfBirthFormat = new Date(dateOfBirth);
@@ -42,7 +42,8 @@ async function getPersonById(req,res){
             age,
             address,
             phone,
-            DNI
+            DNI,
+            email
         })
         res.status(201).json(newPerson);
     }catch(error){
